@@ -31,49 +31,59 @@
 		<spring-cloud.version>2024.0.0</spring-cloud.version>
 	</properties>
 	<dependencies>
+		<!-- Spring Boot Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-batch</artifactId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
+		<!-- Spring Cloud Config -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+
+		<!-- Spring Retry -->
+		<dependency>
+			<groupId>org.springframework.retry</groupId>
+			<artifactId>spring-retry</artifactId>
+		</dependency>
+
+		<!-- Annotation Processor -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Testing Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.batch</groupId>
-			<artifactId>spring-batch-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
+			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
+
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -88,9 +98,25 @@
 
 	<build>
 		<plugins>
+			<!-- Spring Boot Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- Set Active Profile for BootRun -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<executable>java</executable>
+					<arguments>
+<!--						<argument>-Dspring.profiles.active=testdata</argument>-->
+						<argument>-jar</argument>
+						<argument>target/${project.build.finalName}.jar</argument>
+					</arguments>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
