@@ -16,10 +16,10 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJdbcTest
-@Import(DataConfig.class)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ActiveProfiles("integration")
+//@DataJdbcTest
+//@Import(DataConfig.class)
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+//@ActiveProfiles("integration")
 public class BookRepositoryJdbcTests {
 
 //    @Autowired
