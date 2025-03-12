@@ -147,14 +147,4 @@
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>testdata</id>
-			<properties>
-				<spring.profiles.active>testdata</spring.profiles.active>
-			</properties>
-		</profile>
-	</profiles>
-
-
 </project>
