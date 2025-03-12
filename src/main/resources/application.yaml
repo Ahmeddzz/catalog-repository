@@ -24,15 +24,13 @@ spring:
         max-interval: 2000 # 2s
         multiplier: 1.1
   datasource:
-    username: user
-    password: password
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     url: jdbc:postgresql://localhost:5432/polardb_catalog
     hikari:
       connection-timeout: 2000 #ms
       maximum-pool-size: 5
   flyway:
-    username: user
-    password: password
     enabled: true
     baseline-on-migrate: true
     validate-migration-naming: true
