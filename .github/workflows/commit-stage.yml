@@ -38,6 +38,10 @@ jobs:
       - name: Build, unit tests and integration tests
         run: |
           mvn clean install
+      - name: Install tools
+        uses: alexellis/arkade-get@master
+        with:
+          kubeconform: latest
       - name: Validate Kubernetes manifests
         run: |
           kubeconform --strict k8s
